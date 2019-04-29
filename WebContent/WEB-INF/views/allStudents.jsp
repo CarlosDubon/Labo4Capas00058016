@@ -18,14 +18,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="student" items="${studentsList}" >
-				<tr>
-					<td>${student.name}</td>
-					<td>${student.lasName}</td>
-					<td>${student.dDate}</td>
-				</tr>
-			</c:forEach>
+			<c:if test="${not empty studentsList}">
+				<c:forEach var="student" items="${studentsList}" >
+					<tr>
+						<td>${student.name}</td>
+						<td>${student.lasName}</td>
+						<td>${student.dDate}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
 		</tbody>
 	</table>
+	<c:out value="Using JSTL" />
 </body>
 </html>
