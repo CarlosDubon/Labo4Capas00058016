@@ -17,6 +17,12 @@ public class Student {
 		this.carrer = carrer;
 		this.exprerience = exprerience;
 	}
+	public Student(String name, String lasName, String dDate) {
+		super();
+		this.name = name;
+		this.lasName = lasName;
+		this.dDate = dDate;
+	}
 	public Student() {}
 	public String getName() {
 		return name;

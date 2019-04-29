@@ -7,13 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/formData" method="post">
-		<label>Nombre</label><input type="text" name="name" />
-		<label>Apellido</label><input type="text" name="lname" />
-		<label>Fecha nacimiento</label><input type="text" name="date" />
-		<label>Carrera</label><input type="text" name="carrer" />
-		<label>Experiencia</label><input type="text" name="experience" />
-		<input type="submit" >
-	</form>
+	<a href='${pageContext.request.contextPath}/getAllStudents'>Ver estudiantes</a>
 </body>
 </html>
