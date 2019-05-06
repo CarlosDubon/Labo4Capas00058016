@@ -2,41 +2,36 @@ package com.uca.capas.controller;
 
 import java.util.ArrayList;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.uca.capas.domain.Student;
+import com.uca.capas.domain.Producto;
 
 @Controller
 public class MainController {
 	@RequestMapping("/")
 	public ModelAndView initMain() {
 		ModelAndView mav = new ModelAndView();
+		Producto producto = new Producto();
 		mav.setViewName("main");
-		mav.addObject("message","Bienvenidos a MVC");
+		mav.addObject("producto",producto);
 		return mav;
 	}
-	
-	@RequestMapping(value="/formData", method=RequestMethod.GET)
-	public ModelAndView formData(@RequestParam String name, @RequestParam String lname,@RequestParam String date,@RequestParam String carrer,@RequestParam String experience) {
+	@RequestMapping(value="/validar",method = RequestMethod.POST)
+	public ModelAndView validar(@Valid @ModelAttribute Producto producto,BindingResult result) {
 		ModelAndView mav = new ModelAndView();
-		Student student = new Student(name,lname,date,carrer,experience);
-		mav.setViewName("form");
-		mav.addObject("student",student);
+		if(result.hasErrors()) {
+			mav.setViewName("main");
+		}else {
+			mav.setViewName("result");
+		}
 		return mav;
 	}
-	@RequestMapping("/getAllStudents")
-	public ModelAndView getAllStudents() {
-		ModelAndView mav = new ModelAndView();
-		ArrayList<Student> students = new ArrayList<>();
-		students.add(new Student("Carlos","Minero","10-01-98"));
-		students.add(new Student("Sofia","Guzman","20-10-98"));
-		mav.setViewName("allStudents");
-		mav.addObject("studentsList", students);
-		return mav;
-	}
-	
 }
